@@ -8,5 +8,6 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization: token,
         },
+        baseURL: "https://plant-tender.herokuapp.com/"
     });
 };
