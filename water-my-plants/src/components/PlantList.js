@@ -22,7 +22,7 @@ const PlantList = ({ plants, updatePlants }) => {
   const saveEdit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`API`, plantToEdit)
+      .put(`/api/plants/${plantToEdit.id}`, plantToEdit)
       .then(res => {
         console.log("This is saveEdit", res.data)
         setEditing(false);
@@ -34,7 +34,7 @@ const PlantList = ({ plants, updatePlants }) => {
 
   const deletePlant = plant => {
     axiosWithAuth()
-      .delete(`API`)
+      .delete(`/api/plants/${plant.id}`)
       .then(res => {
           console.log("This is delete plant", res.data)
           history.push("/plants/reload");

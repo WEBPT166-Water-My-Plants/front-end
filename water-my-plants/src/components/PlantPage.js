@@ -6,7 +6,7 @@ const PlantPage = () => {
     const [plantList, setPlantList] = useState([]);
 
     useEffect(() => {
-        axiosWithAuth().get('./api/plants')
+        axiosWithAuth().get('/api/plants')
         .then(res => {
             console.log("This is the initial plant list from API", res.data)
             setPlantList(res.data)
