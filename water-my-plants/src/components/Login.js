@@ -10,11 +10,10 @@ const Login = (props) => {
   })
   const history = useHistory();
 
-  // when you have handled the token, navigate to the BubblePage route
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post('./api/auth/register', login)
+      .post('./api/login', login)
       .then(res => {
         console.log(res)
         window.localStorage.setItem('token', res.data.payload)
