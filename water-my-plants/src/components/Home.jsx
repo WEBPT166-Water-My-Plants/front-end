@@ -20,7 +20,7 @@ function Home() {
         <Link to="/login">
           <StyledButton>Login</StyledButton>
         </Link>
-        <Link to="/">
+        <Link to="/join">
           <StyledButton>Join</StyledButton>
         </Link>
       </HomeStyle>
