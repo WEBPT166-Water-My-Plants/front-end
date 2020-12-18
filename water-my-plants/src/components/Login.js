@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Header from './Header';
 import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
@@ -27,10 +27,10 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post('./api/login', login)
+      .post('./api/auth/login', login)
       .then((res) => {
         console.log(res);
-        window.localStorage.setItem('token', res.data.payload);
+        window.localStorage.setItem('token', res.data.token);
         history.push('/plants');
       })
       .catch((err) => console.log(err.response));
