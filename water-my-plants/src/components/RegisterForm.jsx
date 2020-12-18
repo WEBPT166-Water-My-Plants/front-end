@@ -62,7 +62,6 @@ export default function RegisterForm() {
   }, [formState]);
 
   const inputChange = (event) => {
-    event.presist();
     const data = {
       ...formState,
       [event.target.name]:
