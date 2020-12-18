@@ -7,6 +7,7 @@ import PlantPage from "./components/PlantPage";
 
 import Home from './components/Home';
 import Login from './components/Login';
+import RegisterForm from "./components/RegisterForm";
 
 function App() {
   return (
@@ -15,10 +16,13 @@ function App() {
       <Switch>
           <PrivateRoute exact path="/plants" component={PlantPage} />
           <Route exact path="/" component={Home} />
-          <Route component={Login} />
+          <Route path='/login' component={Login} />
+          <Route path='/join' component={RegisterForm} />
+          
         </Switch>
       </div>
     </Router>
+    
   );
 }
 
