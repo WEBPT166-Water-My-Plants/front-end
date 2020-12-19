@@ -18,6 +18,8 @@ function Header() {
       <h1>
         <Link to="/">Water My Plant</Link>
       </h1>
+
+      <p>Hello Guest</p>
     </HeaderStyle>
   );
 }
