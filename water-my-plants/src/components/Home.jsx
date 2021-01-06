@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Header from './Header';
 import { StyledButton } from './Styles/StyledComponents';
 
@@ -13,6 +14,15 @@ const HomeStyle = styled.main`
 `;
 
 function Home() {
+  useEffect(() => {
+    if (window.localStorage.getItem('token') !== null) {
+      axiosWithAuth()
+        .get('/api/auth/users')
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  }, []);
   return (
     <div>
       <Header />
@@ -20,7 +30,7 @@ function Home() {
         <Link to="/login">
           <StyledButton>Login</StyledButton>
         </Link>
-        <Link to="/">
+        <Link to="/join">
           <StyledButton>Join</StyledButton>
         </Link>
       </HomeStyle>
