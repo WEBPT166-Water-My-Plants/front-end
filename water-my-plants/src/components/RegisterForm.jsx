@@ -99,7 +99,7 @@ export default function RegisterForm() {
           <form onSubmit={submitForm}>
             <div>
               <h1>Water My Plants</h1>
-              <img src={plantImg} />
+              <img src={plantImg} alt="registerImage"/>
             </div>
             <div className="user-name">
               <h3>Enter your Username</h3>

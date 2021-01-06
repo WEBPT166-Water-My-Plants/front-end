@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import RegisterForm from './components/RegisterForm';
 
+import "./App.css";
+
 function App() {
   return (
     <Router>
