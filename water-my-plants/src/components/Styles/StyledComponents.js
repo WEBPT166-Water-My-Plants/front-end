@@ -16,10 +16,13 @@ const StyledTextInput = styled.div`
 
 const StyledButton = styled.button`
   border: none;
-  background-color: #2ecc71;
+  background-color: #227744;
   margin: 0.5em;
   padding: 0.5em 1em;
+  border: 2px solid black;
   border-radius: 5px;
+  color: white;
+  font-size: 25px;
 
   :hover {
     opacity: 80%;
@@ -35,7 +38,21 @@ const StyledForm = styled.div`
     align-items: center;
     flex-basis: 50%;
     padding: 1.15em;
-    box-shadow: 0px 1px 3px #010101;
+    box-shadow: 5px 5px 5px #010101;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10%;
+    width: 30%;
+    margin: 0 35% 0 35%;
+    background: rgba(255, 165, 0, 0.73);
+    color: white;
+    font-family: 'Merienda', cursive;
+    text-shadow: 3px 3px 5px black;
+  }
+
+  img {
+    width: 250px;
+    border-radius: 50%;
   }
 `;
 
