@@ -10,6 +10,13 @@ const HeaderStyle = styled.div`
     text-decoration: none;
     color: inherit;
   }
+
+  h1 {
+    font-family: 'Merienda', cursive;
+    font-size: 80px;
+    color: darkorange;
+    text-shadow: 3px 3px 5px white;
+  }
 `;
 
 function Header() {

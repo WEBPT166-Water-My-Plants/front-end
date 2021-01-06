@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./images/plants_botanical_garden_greenhouse_137455_3840x2160.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
 }
 
 code {
