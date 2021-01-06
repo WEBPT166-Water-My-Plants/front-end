@@ -44,6 +44,10 @@ const StyledForm = styled.div`
     border-radius: 10%;
     width: 30%;
     margin: 0 35% 0 35%;
+    background: rgba(255, 165, 0, 0.73);
+    color: white;
+    font-family: 'Merienda', cursive;
+    text-shadow: 3px 3px 5px black;
   }
 
   img {

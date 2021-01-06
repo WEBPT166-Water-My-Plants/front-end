@@ -15,7 +15,7 @@ const HeaderStyle = styled.div`
     font-family: 'Merienda', cursive;
     font-size: 80px;
     color: darkorange;
-    text-shadow: 3px 3px 5px white;
+    text-shadow: 3px 3px 5px black;
   }
 `;
 
