@@ -5,6 +5,8 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Header from './Header';
 import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
 import styled from 'styled-components';
+import { setIsLoggedOn, updateUserWithUsername } from '../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const LoginStyles = styled.div`
   display: flex;
@@ -23,6 +25,7 @@ const Login = (props) => {
     password: '',
   });
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +33,9 @@ const Login = (props) => {
       .post('/api/auth/login', login)
       .then((res) => {
         console.log(res);
+        dispatch(setIsLoggedOn());
         window.localStorage.setItem('token', res.data.token);
+        updateUserWithUsername(dispatch, login.username);
         history.push('/plants');
       })
       .catch((err) => console.log(err.response));
@@ -43,7 +48,6 @@ const Login = (props) => {
   return (
     <>
       <Header />
-
       <LoginStyles>
         <StyledForm className="loginForm">
           <form onSubmit={handleSubmit}>
