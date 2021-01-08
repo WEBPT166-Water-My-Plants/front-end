@@ -1,4 +1,9 @@
-import { IS_FETCHING, LOG_ON, FETCHING_SUCCESS, LOG_OFF } from '../actionTypes';
+import {
+  IS_FETCHING,
+  LOG_ON,
+  USER_FETCHING_SUCCESS,
+  LOG_OFF,
+} from '../actionTypes';
 
 const initialState = {
   isLoggedIn: window.localStorage.token !== null,
@@ -14,7 +19,7 @@ function userReducer(state = initialState, action) {
       return { ...state, isLoggedIn: false };
     case IS_FETCHING:
       return { ...state, isLoading: true };
-    case FETCHING_SUCCESS:
+    case USER_FETCHING_SUCCESS:
       return { ...state, isLoading: false, userData: action.payload };
     default:
       return state;
