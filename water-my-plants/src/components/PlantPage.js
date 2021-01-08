@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import {axiosWithAuth} from "../utils/axiosWithAuth";
-import PlantList from "./PlantList";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUsersPlants } from '../redux/actions';
+import PlantList from './PlantList';
 
 const PlantPage = () => {
-    const [plantList, setPlantList] = useState([]);
+  const [plantList, setPlantList] = useState([]);
+  const userId = useSelector((state) => state.user.userData?.id);
+  const plants = useSelector((state) => state.plants);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        axiosWithAuth().get('/api/plants')
-        .then(res => {
-            console.log("This is the initial plant list from API", res.data)
-            setPlantList(res.data)
-        })
-        .catch(err => console.log(err.response));
-    }, []);
+  useEffect(() => {
+    if (userId) updateUsersPlants(dispatch, userId);
+    setPlantList(plants);
+  }, [userId]);
 
-    return (
-        <>
-         <PlantList plants={plantList} updatePlants={setPlantList} />
-        </>
-    )
-}
+  return (
+    <>
+      <PlantList plants={plantList} updatePlants={setPlantList} />
+    </>
+  );
+};
 
 export default PlantPage;

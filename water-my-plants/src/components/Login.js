@@ -32,7 +32,6 @@ const Login = (props) => {
     axiosWithAuth()
       .post('/api/auth/login', login)
       .then((res) => {
-        console.log(res);
         dispatch(setIsLoggedOn());
         window.localStorage.setItem('token', res.data.token);
         updateUserWithUsername(dispatch, login.username);
