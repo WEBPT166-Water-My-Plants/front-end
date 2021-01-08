@@ -56,4 +56,14 @@ const StyledForm = styled.div`
   }
 `;
 
+const HeaderText = styled.h1`
+font-size: 3.2rem;
+font-weight: bold;
+text-align: center;
+padding: 2rem;
+:hover {
+  color: #90EE90;
+}
+`;
+
 export { StyledTextInput, StyledButton, StyledForm };

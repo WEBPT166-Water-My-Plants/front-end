@@ -123,6 +123,7 @@ export default function RegisterForm() {
             </div>
             <div className="user-number">
               <h3>Enter your Phonenumber</h3>
+              <StyledTextInput>
               <label>
                 <input
                   type="text"
@@ -133,10 +134,12 @@ export default function RegisterForm() {
                   onChange={inputChange}
                 />
               </label>
+              </StyledTextInput>
               <p>{errors.phonenumber}</p>
             </div>
             <div className="user-password">
               <h3>Enter a Password</h3>
+              <StyledTextInput>
               <label>
                 <input
                   type="text"
@@ -147,6 +150,7 @@ export default function RegisterForm() {
                   onChange={inputChange}
                 />
               </label>
+              </StyledTextInput>
               <p>{errors.password}</p>
             </div>
             <button disabled={subBtn} type="submitBtn">
