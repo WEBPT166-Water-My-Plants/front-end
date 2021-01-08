@@ -16,6 +16,7 @@ const HomeStyle = styled.main`
   border-radius: 5%;
   border: 3px solid black;
   background: rgba(255, 165, 0, 0.73);
+  box-shadow: 5px 5px 5px black;
 
   p{
     font-size: 20px;

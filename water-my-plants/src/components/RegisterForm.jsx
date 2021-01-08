@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
 import plantImg from '../utils/waterplants.jpg';
 import Header from './Header';
+import { useDispatch } from 'react-redux';
+import { setIsLoggedOn } from '../redux/actions';
 
 export default function RegisterForm() {
   //states
@@ -22,6 +24,7 @@ export default function RegisterForm() {
   const [subBtn, setSubBtn] = useState(false);
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -85,6 +88,7 @@ export default function RegisterForm() {
           phonenumber: '',
           password: '',
         });
+        dispatch(setIsLoggedOn());
         history.push('/plants');
       })
       .catch((err) => console.log(err.response));
@@ -99,7 +103,7 @@ export default function RegisterForm() {
           <form onSubmit={submitForm}>
             <div>
               <h1>Water My Plants</h1>
-              <img src={plantImg} alt="registerImage"/>
+              <img src={plantImg} alt="registerImage" />
             </div>
             <div className="user-name">
               <h3>Enter your Username</h3>
