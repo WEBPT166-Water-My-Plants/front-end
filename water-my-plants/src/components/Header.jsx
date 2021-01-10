@@ -2,9 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const HeaderStyle = styled.div`
+const HeaderStyle = styled.header`
   color: #000;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   a {
     text-decoration: none;
@@ -15,7 +18,7 @@ const HeaderStyle = styled.div`
     font-family: 'Merienda', cursive;
     font-size: 80px;
     color: darkorange;
-    text-shadow: 3px 3px 5px black;
+    text-shadow: 0 0 0.1em black;
   }
 `;
 
@@ -25,8 +28,6 @@ function Header() {
       <h1>
         <Link to="/">Water My Plant</Link>
       </h1>
-
-      <p>Hello Guest</p>
     </HeaderStyle>
   );
 }

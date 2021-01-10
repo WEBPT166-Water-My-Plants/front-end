@@ -3,7 +3,11 @@ import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Header from './Header';
-import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
+import {
+  StyledButton,
+  StyledForm,
+  StyledTextInput,
+} from './Styles/StyledComponents';
 import styled from 'styled-components';
 import { setIsLoggedOn, updateUserWithUsername } from '../redux/actions';
 import { useDispatch } from 'react-redux';
@@ -14,7 +18,7 @@ const LoginStyles = styled.div`
   align-items: center;
 
   .loginForm {
-    flex-basis: 50%;
+    flex-basis: 100%;
   }
 `;
 
@@ -45,7 +49,7 @@ const Login = (props) => {
   };
 
   return (
-    <>
+    <div className="homePage">
       <Header />
       <LoginStyles>
         <StyledForm className="loginForm">
@@ -73,11 +77,11 @@ const Login = (props) => {
                 onChange={handleChange}
               />
             </StyledTextInput>
-            <button>LOGIN</button>
+            <StyledButton onClick={handleSubmit}>LOGIN</StyledButton>
           </form>
         </StyledForm>
       </LoginStyles>
-    </>
+    </div>
   );
 };
 

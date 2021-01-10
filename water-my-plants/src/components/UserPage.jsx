@@ -1,21 +1,12 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Col,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-  TabContent,
-  TabPane,
-} from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import styled from 'styled-components';
 
 import { logoutUser } from '../redux/actions';
 import PlantPage from './PlantPage';
-import PlantList from './PlantList';
 
 const UserPageStyle = styled.div`
   display: flex;
@@ -73,7 +64,7 @@ const NavPanelStyle = styled.nav`
 
 const UserPage = () => {
   const user = useSelector((state) => state.user.userData);
-  const [userIsNotNull, setUserNull] = useState(user !== {});
+  const userIsNotNull = useSelector((state) => state.user !== {});
   const [activeTab, setActiveTab] = useState('1');
   const dispatch = useDispatch();
   const history = useHistory();
