@@ -41,10 +41,12 @@ const HomeStyle = styled.main`
     padding-bottom: 2em;
     height: 100%;
     width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+
     position: absolute;
     top: 1.5rem;
     bottom: 0;

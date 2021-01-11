@@ -7,7 +7,8 @@ const StyledTextInput = styled.div`
   flex-flow: column nowrap;
   margin-bottom: 0.5em;
 
-  input {
+  input,
+  select {
     padding: 5px;
     margin-top: 0.5em;
     margin-bottom: 0.5em;

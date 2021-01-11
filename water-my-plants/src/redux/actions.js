@@ -5,6 +5,7 @@ import {
   USER_FETCHING_SUCCESS,
   PLANTS_FETCHING_SUCCESS,
   LOG_OFF,
+  TOGGLE_MODAL,
 } from './actionTypes';
 
 export const setIsLoggedOn = () => ({
@@ -45,3 +46,9 @@ export const logoutUser = (dispatch) => {
   window.localStorage.removeItem('token');
   dispatch(setIsLoggedOff());
 };
+
+// Modal Actions
+
+export const toggleModal = () => ({
+  type: TOGGLE_MODAL,
+});
