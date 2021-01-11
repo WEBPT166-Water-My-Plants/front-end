@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
+import "./PlantList.css";
 
 const initialPlant = {
-  name: "test",
-  species: "test",
-  schedule: "test"
+  nickame: 'Pink Pampas Grass',
+  species: 'Cortaderia selloana',
+  h2oFrequency: 'Daily'
 };
 
 const PlantList = ({ plants, updatePlants }) => {
-  console.log("This is plants", plants);
-  const [editing, setEditing] = useState(false);
-  const [plantToEdit, setPlantToEdit] = useState(initialPlant);
+  const [plant, setPlant] = useState(initialPlant);
   const history = useHistory();
+  console.log("This is plants", plant);
 
   const editPlant = plant => {
-    setEditing(true);
-    setPlantToEdit(plant);
+    setPlant(plant);
   };
 
   const saveEdit = e => {
     e.preventDefault();
     axiosWithAuth()
-      .put(`/api/plants/${plantToEdit.id}`, plantToEdit)
+      .put(`/api/users/0/plants`, plant)
       .then(res => {
         console.log("This is saveEdit", res.data)
-        setEditing(false);
         updatePlants([...plants, res.data]);
         history.push("/plants/reload")
       })
@@ -34,7 +32,7 @@ const PlantList = ({ plants, updatePlants }) => {
 
   const deletePlant = plant => {
     axiosWithAuth()
-      .delete(`/api/plants/${plant.id}`)
+      .delete(`/api/users/0/plants, ${plant.id}`)
       .then(res => {
           console.log("This is delete plant", res.data)
           history.push("/plants/reload");
@@ -43,55 +41,17 @@ const PlantList = ({ plants, updatePlants }) => {
   };
 
   return (
-    <div className="plants-wrap">
-      <p>These are the Plants</p>
-      <ul>
-          {plants.map(plant => (
-              <li key={plant.name} onClick={() => editPlant(plant)}>
-                  <span>
-                      <span className="delete" onClick={e => {
-                          e.stopPropagation();
-                          deletePlant(plant)
-                      }}>
-                    </span>
-                  </span>
-              </li>
-          ))}
-      </ul>
-      {editing && (
-          <form onSubmit={saveEdit}>
-              <legend>edit plant</legend>
-              <label>
-                  plant name:
-                  <input
-                    onChange={e =>
-                        setPlantToEdit({...plantToEdit, name: e.target.value})
-                    }
-                    value={plantToEdit.name}
-                    />
-              </label>
-              <label>
-                    species:
-                    <input
-                    onChange={e =>
-                        setPlantToEdit({...plantToEdit, species: e.target.value})
-                    }
-                    value={plantToEdit.species}
-                    />
-              </label>
-              <label>
-                    schedule:
-                    <input
-                    onChange={e =>
-                        setPlantToEdit({...plantToEdit, schedule: e.target.value})
-                    }
-                    value={plantToEdit.schedule}
-                    />
-              </label>
-          </form>
-      )}
-    </div>  
-  );
+      <div className='plantContainer'>
+        <div className='plantCard'>
+          <p>{plant.nickame}</p>
+          <p>{plant.species}</p>
+          <p>{plant.h2oFrequency}</p>
+          <button>Add</button>
+          <button>Delete</button>
+          <button>Edit</button>
+        </div>
+      </div>
+      );
 };
 
 export default PlantList;
