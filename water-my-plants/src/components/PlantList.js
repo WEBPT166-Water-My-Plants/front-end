@@ -44,6 +44,7 @@ const PlantList = ({ plants, updatePlants }) => {
 
   return (
     <div className="plants-wrap">
+      <button onClick={updatePlants}>Reload Plants</button>
       <p>These are the Plants</p>
       <ul>
         {plants.length > 0 &&
