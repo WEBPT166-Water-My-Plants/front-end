@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  Button,
   Input,
   Label,
   Modal,
   ModalBody,
+  ModalFooter,
   ModalHeader,
   Nav,
   NavItem,
@@ -17,7 +19,7 @@ import { Form } from 'react-bootstrap';
 import classnames from 'classnames';
 import styled from 'styled-components';
 
-import { logoutUser, toggleModal } from '../redux/actions';
+import { addPlant, logoutUser, toggleModal } from '../redux/actions';
 import PlantPage from './PlantPage';
 import PlantDataList from './PlantDataList';
 import plantIcon from '../images/plant.svg';
@@ -161,27 +163,34 @@ const UserPage = () => {
 };
 
 const PlantModal = ({ dispatch }) => {
-
   const currentPlant = {
-    'Name': '',
-    'Species': '',
-    'Days': 1
-  }
+    Name: '',
+    Species: '',
+    Days: 1,
+  };
 
-  const [newPlant, setNewPlant] =  useState(currentPlant)
-  const [Name, Species, Days] = newPlant
+  const quickAddSpecies = useSelector((state) => state.plants.plantModalInfo);
+  const [newPlant, setNewPlant] = useState(currentPlant);
+  const userId = useSelector((state) => state.user.userData.id);
+  const isOpen = useSelector((state) => state.plants.plantModalIsOpen);
+
+  useEffect(() => {
+    setNewPlant({ ...newPlant, Species: quickAddSpecies });
+  }, []);
+
+  console.log(quickAddSpecies);
 
   const changeHandler = (e) => {
     setNewPlant({
-      ...newPlant, [e.target.id]: e.target.value
-    })
-  }
+      ...newPlant,
+      [e.target.id]: e.target.value,
+    });
+  };
 
-  // const handleSubmit = (event) => {
-  
-  // }
-
-  const isOpen = useSelector((state) => state.plants.plantModalIsOpen);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addPlant(dispatch, userId, newPlant);
+  };
 
   return (
     <>
@@ -194,7 +203,7 @@ const PlantModal = ({ dispatch }) => {
           Add A Plant
         </ModalHeader>
         <ModalBody>
-          <StyledForm>
+          <StyledForm onSubmit={(e) => handleSubmit(e)}>
             <StyledTextInput>
               <Label for="nickname">
                 Plant Name
@@ -223,6 +232,11 @@ const PlantModal = ({ dispatch }) => {
             </StyledTextInput>
           </StyledForm>
         </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={handleSubmit}>
+            Add Plant
+          </Button>
+        </ModalFooter>
       </Modal>
     </>
   );

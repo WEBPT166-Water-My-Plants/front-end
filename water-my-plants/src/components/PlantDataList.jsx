@@ -4,7 +4,7 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import plantData from '../data';
 import { StyledButton } from './Styles/StyledComponents';
 import { useDispatch } from 'react-redux';
-import { quickAddPlantInfo } from '../redux/actions';
+import { quickAddPlantInfo, toggleModal } from '../redux/actions';
 
 const StyledPlantDataList = styled.div`
   height: 100%;
@@ -75,7 +75,10 @@ const List = () => {
             />
             <p>{e.common_name}</p>
             <StyledButton
-              onClick={() => dispatch(quickAddPlantInfo(e.common_name))}
+              onClick={() => {
+                dispatch(quickAddPlantInfo(e.common_name));
+                dispatch(toggleModal());
+              }}
             >
               Quick Add
             </StyledButton>

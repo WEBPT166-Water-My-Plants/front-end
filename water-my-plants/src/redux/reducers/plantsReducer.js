@@ -1,9 +1,15 @@
-import { PLANTS_FETCHING_SUCCESS, TOGGLE_MODAL } from '../actionTypes';
+import {
+  PLANTS_FETCHING_SUCCESS,
+  PLANT_FORM_INFO,
+  TOGGLE_MODAL,
+} from '../actionTypes';
 
 const initialState = {
   plantModalIsOpen: false,
   plantList: {},
-  plantModalInfo: { plant_species: '' },
+  plantModalInfo: {
+    species: '',
+  },
 };
 
 function plantReducer(state = initialState, action) {
@@ -13,7 +19,7 @@ function plantReducer(state = initialState, action) {
     case TOGGLE_MODAL:
       return { ...state, plantModalIsOpen: !state.plantModalIsOpen };
     case PLANT_FORM_INFO:
-      return { ...state, plantModalInfo: action.payload, plantModalInfo: true };
+      return { ...state, plantModalInfo: { species: action.payload } };
     default:
       return state;
   }

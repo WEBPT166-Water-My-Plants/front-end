@@ -7,6 +7,7 @@ import {
   PLANTS_FETCHING_SUCCESS,
   LOG_OFF,
   TOGGLE_MODAL,
+  PLANT_FORM_INFO,
 } from './actionTypes';
 
 export const setIsLoggedOn = () => ({
@@ -65,5 +66,5 @@ export const addPlant = (dispatch, id, plant) => {
 
 export const quickAddPlantInfo = (plant_species) => ({
   type: PLANT_FORM_INFO,
-  payload: { plant_species },
+  payload: plant_species,
 });
