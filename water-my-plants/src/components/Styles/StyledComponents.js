@@ -7,10 +7,13 @@ const StyledTextInput = styled.div`
   flex-flow: column nowrap;
   margin-bottom: 0.5em;
 
-  input {
+  input,
+  select {
     padding: 5px;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0);
   }
 `;
 
@@ -23,6 +26,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   color: white;
   font-size: 25px;
+  max-width: 100%;
 
   :hover {
     opacity: 80%;
@@ -31,17 +35,15 @@ const StyledButton = styled.button`
 
 const StyledForm = styled.div`
   width: 100%;
-
   form {
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    flex-basis: 50%;
     padding: 1.15em;
-    box-shadow: 5px 5px 5px #010101;
+    box-shadow: 0px 0px 5px 5px #010101aa;
     background-color: white;
-    border: 3px solid black;
-    border-radius: 10%;
+    border-radius: 10px;
     width: 30%;
     margin: 0 35% 0 35%;
     background: rgba(255, 165, 0, 0.73);
@@ -57,13 +59,13 @@ const StyledForm = styled.div`
 `;
 
 const HeaderText = styled.h1`
-font-size: 3.2rem;
-font-weight: bold;
-text-align: center;
-padding: 2rem;
-:hover {
-  color: #90EE90;
-}
+  font-size: 3.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+  :hover {
+    color: #90ee90;
+  }
 `;
 
 export { StyledTextInput, StyledButton, StyledForm };

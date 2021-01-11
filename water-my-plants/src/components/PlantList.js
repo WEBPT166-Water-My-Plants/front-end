@@ -16,7 +16,7 @@ const PlantList = ({ plants, updatePlants }) => {
 
   const editPlant = (plant) => {
     setEditing(true);
-    setPlantToEdit(plant);
+    setPlantToEdit(plant.plantList);
   };
 
   const saveEdit = (e) => {

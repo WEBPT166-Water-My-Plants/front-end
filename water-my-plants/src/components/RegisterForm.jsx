@@ -6,18 +6,18 @@ import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
 import plantImg from '../utils/waterplants.jpg';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
-import { setIsLoggedOn } from '../redux/actions';
+import { setIsLoggedOn, updateUserWithUsername } from '../redux/actions';
 
 export default function RegisterForm() {
   //states
   const [formState, setFormState] = useState({
     username: '',
-    phonenumber: '',
+    phone: '',
     password: '',
   });
   const [errors, setErrors] = useState({
     username: '',
-    phonenumber: '',
+    phone: '',
     password: '',
   });
 
@@ -36,7 +36,7 @@ export default function RegisterForm() {
       .min(4, 'Username must be at lease 4 characters long')
       .max(20, 'Username cannot exceed 20 characters'),
 
-    phonenumber: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+    phone: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
 
     password: yup
       .string()
@@ -82,16 +82,24 @@ export default function RegisterForm() {
       .post('https://plant-tender.herokuapp.com/api/auth/register', formState)
       .then((res) => {
         console.log(res);
-        window.localStorage.setItem('token', res.data.token);
-        setFormState({
-          username: '',
-          phonenumber: '',
-          password: '',
-        });
-        dispatch(setIsLoggedOn());
-        history.push('/plants');
       })
       .catch((err) => console.log(err.response));
+    axiosWithAuth()
+      .post('https://plant-tender.herokuapp.com/api/auth/login', {
+        username: formState.username,
+        password: formState.password,
+      })
+      .then((res) => {
+        window.localStorage.setItem('token', res.data.token);
+        dispatch(setIsLoggedOn());
+        updateUserWithUsername(dispatch, formState.username);
+        setFormState({
+          username: '',
+          phone: '',
+          password: '',
+        });
+        history.push('/plants');
+      });
   };
 
   return (
@@ -124,32 +132,32 @@ export default function RegisterForm() {
             <div className="user-number">
               <h3>Enter your Phonenumber</h3>
               <StyledTextInput>
-              <label>
-                <input
-                  type="text"
-                  name="phonenumber"
-                  placeholder="xxx-xxx-xxxx"
-                  id="phonenumber"
-                  value={formState.phonenumber}
-                  onChange={inputChange}
-                />
-              </label>
+                <label>
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="xxx-xxx-xxxx"
+                    id="phone"
+                    value={formState.phone}
+                    onChange={inputChange}
+                  />
+                </label>
               </StyledTextInput>
-              <p>{errors.phonenumber}</p>
+              <p>{errors.phone}</p>
             </div>
             <div className="user-password">
               <h3>Enter a Password</h3>
               <StyledTextInput>
-              <label>
-                <input
-                  type="text"
-                  name="password"
-                  placeholder="password"
-                  id="password"
-                  value={formState.password}
-                  onChange={inputChange}
-                />
-              </label>
+                <label>
+                  <input
+                    type="text"
+                    name="password"
+                    placeholder="password"
+                    id="password"
+                    value={formState.password}
+                    onChange={inputChange}
+                  />
+                </label>
               </StyledTextInput>
               <p>{errors.password}</p>
             </div>

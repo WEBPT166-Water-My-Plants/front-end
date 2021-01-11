@@ -2,29 +2,36 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Col,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
   Nav,
   NavItem,
   NavLink,
-  Row,
   TabContent,
   TabPane,
 } from 'reactstrap';
+import { Form } from 'react-bootstrap';
 import classnames from 'classnames';
 import styled from 'styled-components';
 
-import { logoutUser } from '../redux/actions';
+import { logoutUser, toggleModal } from '../redux/actions';
 import PlantPage from './PlantPage';
-import PlantList from './PlantList';
+import PlantDataList from './PlantDataList';
+import plantIcon from '../images/plant.svg';
+import { StyledForm, StyledTextInput } from './Styles/StyledComponents';
 
 const UserPageStyle = styled.div`
   display: flex;
   align-items: center;
   padding: 1em 2em;
   height: 100vh;
+  width: 100vw;
 
   .userDashboard {
-    background-color: #dddddd;
+    background-color: #f0f0f0;
     border-radius: 5px;
     height: 95%;
     flex: 1;
@@ -37,7 +44,7 @@ const UserPageStyle = styled.div`
 `;
 
 const NavPanelStyle = styled.nav`
-  background-color: #dddddd;
+  background-color: #f0f0f0;
   border-radius: 5px;
   padding: 1em;
   height: 95%;
@@ -69,12 +76,32 @@ const NavPanelStyle = styled.nav`
     background-color: #bc0003;
     font-weight: 600;
   }
+
+  .user--addPlant {
+    border: 1px solid black;
+    padding: 0.25em;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    img {
+      height: 25px;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
 `;
 
 const UserPage = () => {
   const user = useSelector((state) => state.user.userData);
-  const [userIsNotNull, setUserNull] = useState(user !== {});
+  const userIsNotNull = useSelector((state) => state.user !== {});
   const [activeTab, setActiveTab] = useState('1');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -89,6 +116,7 @@ const UserPage = () => {
       {/* menu side bar */}
       {userIsNotNull && (
         <>
+          <PlantModal isOpen={modalIsOpen} dispatch={dispatch} />
           <UserPanel
             username={user.username}
             dispatch={dispatch}
@@ -121,12 +149,54 @@ const UserPage = () => {
               <TabPane tabId="1">
                 <PlantPage />
               </TabPane>
-              <TabPane tabId="2"></TabPane>
+              <TabPane tabId="2">
+                <PlantDataList />
+              </TabPane>
             </TabContent>
           </div>
         </>
       )}
     </UserPageStyle>
+  );
+};
+
+const PlantModal = ({ dispatch }) => {
+  const isOpen = useSelector((state) => state.plants.plantModalIsOpen);
+
+  return (
+    <>
+      <Modal
+        isOpen={isOpen}
+        toggle={() => dispatch(toggleModal())}
+        className="addPlantModal"
+      >
+        <ModalHeader toggle={() => dispatch(toggleModal())}>
+          Add A Plant
+        </ModalHeader>
+        <ModalBody>
+          <StyledForm>
+            <StyledTextInput>
+              <Label for="nickname">
+                Plant Name
+                <Form.Control type="text" id="nickname" />
+              </Label>
+            </StyledTextInput>
+            <StyledTextInput>
+              <Label for="species">
+                Plant Species
+                <Form.Control type="text" id="species" />
+              </Label>
+            </StyledTextInput>
+            <StyledTextInput>
+              <Label for="species">
+                Water Frequency
+                <Form.Control as="select" custom></Form.Control>
+              </Label>
+            </StyledTextInput>
+          </StyledForm>
+        </ModalBody>
+      </Modal>
+    </>
   );
 };
 
@@ -139,6 +209,13 @@ const UserPanel = ({ username, dispatch, history }) => {
             {username && username.slice(0, 1).toUpperCase()}
           </div>
           <div className="user--username">{username}</div>
+          <div
+            className="user--addPlant"
+            onClick={(e) => dispatch(toggleModal())}
+          >
+            <img src={plantIcon} alt="" />
+            <p>Add Plant</p>
+          </div>
         </div>
         <button
           className="user--logout-btn"

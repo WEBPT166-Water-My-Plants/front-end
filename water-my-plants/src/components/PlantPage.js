@@ -6,7 +6,7 @@ import PlantList from './PlantList';
 const PlantPage = () => {
   const [plantList, setPlantList] = useState([]);
   const userId = useSelector((state) => state.user.userData?.id);
-  const plants = useSelector((state) => state.plants);
+  const plants = useSelector((state) => state.plants.plantList);
   const dispatch = useDispatch();
 
   useEffect(() => {
