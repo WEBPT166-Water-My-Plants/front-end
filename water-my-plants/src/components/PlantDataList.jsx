@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import plantData from '../data';
 import { StyledButton } from './Styles/StyledComponents';
+import { useDispatch } from 'react-redux';
+import { quickAddPlantInfo } from '../redux/actions';
 
 const StyledPlantDataList = styled.div`
   height: 100%;
@@ -53,6 +55,7 @@ export default PlantDataList;
 const List = () => {
   const [ListData, setListData] = useState([]);
   const [Pages, setPages] = useState([]);
+  const dispatch = useDispatch();
 
   useMemo(() => {
     setListData(plantData);
@@ -71,7 +74,11 @@ const List = () => {
               alt={e.common_name + '_pic'}
             />
             <p>{e.common_name}</p>
-            <StyledButton>Quick Add</StyledButton>
+            <StyledButton
+              onClick={() => dispatch(quickAddPlantInfo(e.common_name))}
+            >
+              Quick Add
+            </StyledButton>
           </div>
         ))}
       </div>

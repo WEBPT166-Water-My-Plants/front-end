@@ -62,3 +62,8 @@ export const addPlant = (dispatch, id, plant) => {
   );
   updateUsersPlants(dispatch, id);
 };
+
+export const quickAddPlantInfo = (plant_species) => ({
+  type: PLANT_FORM_INFO,
+  payload: { plant_species },
+});
