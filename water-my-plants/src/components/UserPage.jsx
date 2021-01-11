@@ -168,6 +168,7 @@ const UserPage = () => {
 };
 
 const PlantModal = ({ dispatch }) => {
+
   const currentPlant = {
     name: '',
     species: '',
