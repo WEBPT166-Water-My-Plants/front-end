@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import {
   LOG_ON,
@@ -51,4 +52,18 @@ export const logoutUser = (dispatch) => {
 
 export const toggleModal = () => ({
   type: TOGGLE_MODAL,
+});
+
+export const addPlant = (dispatch, id, plant) => {
+  dispatch(isLoading());
+  Axios.post(
+    `https://plant-tender.herokuapp.com/api/users/${id}/plants`,
+    plant
+  );
+  updateUsersPlants(dispatch, id);
+};
+
+export const quickAddPlantInfo = (plant_species) => ({
+  type: PLANT_FORM_INFO,
+  payload: { plant_species },
 });
