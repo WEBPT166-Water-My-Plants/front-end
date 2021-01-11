@@ -161,6 +161,26 @@ const UserPage = () => {
 };
 
 const PlantModal = ({ dispatch }) => {
+
+  const currentPlant = {
+    'Name': '',
+    'Species': '',
+    'Days': 1
+  }
+
+  const [newPlant, setNewPlant] =  useState(currentPlant)
+  const [Name, Species, Days] = newPlant
+
+  const changeHandler = (e) => {
+    setNewPlant({
+      ...newPlant, [e.target.id]: e.target.value
+    })
+  }
+
+  // const handleSubmit = (event) => {
+  
+  // }
+
   const isOpen = useSelector((state) => state.plants.plantModalIsOpen);
 
   return (
@@ -189,8 +209,16 @@ const PlantModal = ({ dispatch }) => {
             </StyledTextInput>
             <StyledTextInput>
               <Label for="species">
-                Water Frequency
-                <Form.Control as="select" custom></Form.Control>
+                Days to Water
+                <Form.Control as="select" custom>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                </Form.Control>
               </Label>
             </StyledTextInput>
           </StyledForm>
