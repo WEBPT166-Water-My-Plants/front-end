@@ -12,7 +12,7 @@ const PlantPage = () => {
   useEffect(() => {
     if (userId) updateUsersPlants(dispatch, userId);
     setPlantList(plants);
-  }, [userId]);
+  }, []);
 
   return (
     <>

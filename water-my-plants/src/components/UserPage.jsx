@@ -19,7 +19,12 @@ import { Form } from 'react-bootstrap';
 import classnames from 'classnames';
 import styled from 'styled-components';
 
-import { addPlant, logoutUser, toggleModal } from '../redux/actions';
+import {
+  addPlant,
+  logoutUser,
+  quickAddPlantInfo,
+  toggleModal,
+} from '../redux/actions';
 import PlantPage from './PlantPage';
 import PlantDataList from './PlantDataList';
 import plantIcon from '../images/plant.svg';
@@ -164,19 +169,21 @@ const UserPage = () => {
 
 const PlantModal = ({ dispatch }) => {
   const currentPlant = {
-    Name: '',
-    Species: '',
-    Days: 1,
+    name: '',
+    species: '',
+    days: 1,
   };
 
-  const quickAddSpecies = useSelector((state) => state.plants.plantModalInfo);
+  const quickAddSpecies = useSelector(
+    (state) => state.plants.plantModalInfo.species
+  );
   const [newPlant, setNewPlant] = useState(currentPlant);
   const userId = useSelector((state) => state.user.userData.id);
   const isOpen = useSelector((state) => state.plants.plantModalIsOpen);
 
   useEffect(() => {
-    setNewPlant({ ...newPlant, Species: quickAddSpecies });
-  }, []);
+    setNewPlant({ ...newPlant, species: quickAddSpecies });
+  }, [quickAddSpecies]);
 
   console.log(quickAddSpecies);
 
@@ -190,6 +197,8 @@ const PlantModal = ({ dispatch }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addPlant(dispatch, userId, newPlant);
+    dispatch(quickAddPlantInfo(''));
+    dispatch(toggleModal());
   };
 
   return (
@@ -205,21 +214,39 @@ const PlantModal = ({ dispatch }) => {
         <ModalBody>
           <StyledForm onSubmit={(e) => handleSubmit(e)}>
             <StyledTextInput>
-              <Label for="nickname">
+              <Label for="name">
                 Plant Name
-                <Form.Control type="text" id="nickname" />
+                <Form.Control
+                  type="text"
+                  id="name"
+                  name="name"
+                  onChange={changeHandler}
+                  value={newPlant.name}
+                />
               </Label>
             </StyledTextInput>
             <StyledTextInput>
               <Label for="species">
                 Plant Species
-                <Form.Control type="text" id="species" />
+                <Form.Control
+                  type="text"
+                  id="species"
+                  name="species"
+                  onChange={changeHandler}
+                  value={newPlant.species}
+                />
               </Label>
             </StyledTextInput>
             <StyledTextInput>
               <Label for="species">
                 Days to Water
-                <Form.Control as="select" custom>
+                <Form.Control
+                  as="select"
+                  name="days"
+                  onChange={changeHandler}
+                  value={newPlant.days}
+                  custom
+                >
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>

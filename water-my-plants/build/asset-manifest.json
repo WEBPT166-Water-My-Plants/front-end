@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8d1d355f.chunk.css",
+    "main.js": "/static/js/main.1eff4c03.chunk.js",
+    "main.js.map": "/static/js/main.1eff4c03.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a0a7eaed.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a0a7eaed.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "/static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.c7f15d14.chunk.js": "/static/js/2.c7f15d14.chunk.js",
+    "static/js/2.c7f15d14.chunk.js.map": "/static/js/2.c7f15d14.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "/static/css/2.20aa2d7b.chunk.css.map",
+    "static/css/main.8d1d355f.chunk.css.map": "/static/css/main.8d1d355f.chunk.css.map",
+    "static/js/2.c7f15d14.chunk.js.LICENSE.txt": "/static/js/2.c7f15d14.chunk.js.LICENSE.txt",
+    "static/media/plant.6adedc65.svg": "/static/media/plant.6adedc65.svg",
+    "static/media/index.css": "/static/media/plants_botanical_garden_greenhouse_137455_3840x2160.79860685.jpg",
+    "static/media/waterplants.ea5c35a7.jpg": "/static/media/waterplants.ea5c35a7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a0a7eaed.js",
+    "static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.c7f15d14.chunk.js",
+    "static/css/main.8d1d355f.chunk.css",
+    "static/js/main.1eff4c03.chunk.js"
+  ]
+}
