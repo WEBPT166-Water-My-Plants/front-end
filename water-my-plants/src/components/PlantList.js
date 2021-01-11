@@ -48,7 +48,7 @@ const PlantList = ({ plants, updatePlants }) => {
       <ul>
         {plants.length > 0 &&
           plants.map((plant) => (
-            <li key={plant.name} onClick={() => editPlant(plant)}>
+            <li key={plant.nickname} onClick={() => editPlant(plant)}>
               <span>
                 <span
                   className="delete"
@@ -56,7 +56,9 @@ const PlantList = ({ plants, updatePlants }) => {
                     e.stopPropagation();
                     deletePlant(plant);
                   }}
-                ></span>
+                >
+                  Plant Name: {plant.nickname}
+                </span>
               </span>
             </li>
           ))}

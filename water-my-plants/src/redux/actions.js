@@ -7,6 +7,7 @@ import {
   PLANTS_FETCHING_SUCCESS,
   LOG_OFF,
   TOGGLE_MODAL,
+  PLANT_FORM_INFO,
 } from './actionTypes';
 
 export const setIsLoggedOn = () => ({
@@ -56,14 +57,15 @@ export const toggleModal = () => ({
 
 export const addPlant = (dispatch, id, plant) => {
   dispatch(isLoading());
-  Axios.post(
-    `https://plant-tender.herokuapp.com/api/users/${id}/plants`,
-    plant
-  );
+  axiosWithAuth().post(`/api/users/${id}/plants`, {
+    nickname: plant.name,
+    species: plant.species,
+    h2oFrequency: plant.days,
+  });
   updateUsersPlants(dispatch, id);
 };
 
 export const quickAddPlantInfo = (plant_species) => ({
   type: PLANT_FORM_INFO,
-  payload: { plant_species },
+  payload: plant_species,
 });
