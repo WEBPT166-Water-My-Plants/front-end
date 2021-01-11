@@ -162,19 +162,18 @@ const UserPage = () => {
 
 const PlantModal = ({ dispatch }) => {
 
-  const currentPlant = {
+ 
+  const [plant, setPlant] =  useState({
     'Name': '',
     'Species': '',
     'Days': 1
-  }
-
-  const [newPlant, setNewPlant] =  useState(currentPlant)
-  const [Name, Species, Days] = newPlant
+  })
+  
 
   const changeHandler = (e) => {
-    setNewPlant({
-      ...newPlant, [e.target.id]: e.target.value
-    })
+   const name = e.target.name;
+    const value = e.target.value;
+    setPlant({...plant, [name]: value })
   }
 
   // const handleSubmit = (event) => {
