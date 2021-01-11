@@ -13,7 +13,7 @@ function plantReducer(state = initialState, action) {
     case TOGGLE_MODAL:
       return { ...state, plantModalIsOpen: !state.plantModalIsOpen };
     case PLANT_FORM_INFO:
-      return { ...state, plantModalInfo: action.payload };
+      return { ...state, plantModalInfo: action.payload, plantModalInfo: true };
     default:
       return state;
   }
